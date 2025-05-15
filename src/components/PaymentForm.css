@@ -1,0 +1,189 @@
+.payment-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-form-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #333;
+  background: #1a1a1a;
+}
+
+.payment-form-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #fff;
+}
+
+.payment-form-header .back-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.back-button:hover {
+  transform: translateX(-4px);
+}
+
+.payment-form-content {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  max-width: 360px;
+  margin: 0 auto;
+  width: 100%;
+  overflow-y: auto;
+  margin-top: 60px;
+  box-sizing: border-box;
+}
+
+.payment-amount {
+  background: #2a2a2a;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-size: 16px;
+}
+
+.payment-amount .amount {
+  font-size: 24px;
+  font-weight: 600;
+  color: #FF6B6B;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  color: #fff;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #FF6B6B;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-row .form-group:last-child {
+  flex: 0.4;
+}
+
+.payment-form-buttons {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+  padding: 16px 0;
+  background: #1a1a1a;
+  border-top: 1px solid #333;
+  max-width: 360px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  position: sticky;
+  bottom: 0;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.payment-form-buttons .back-button {
+  width: 100%;
+  padding: 16px;
+  background: transparent;
+  border: 1px solid #333;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button:hover {
+  background: #2a2a2a;
+}
+
+.back-button:active {
+  background: #333;
+}
+
+.error {
+  color: #ff4444;
+  margin: 12px 0;
+  font-size: 14px;
+} 
