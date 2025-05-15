@@ -2,24 +2,22 @@ import React, { useState } from 'react';
 import './App.css';
 import { BonusCalculator } from './components/BonusCalculator';
 import { PaymentDetails } from './components/PaymentDetails';
-import { SuccessScreen } from './components/SuccessScreen';
+import { SuccessPopup } from './components/SuccessPopup';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('card');
-
-  const handleStart = () => {
-    setCurrentStep(1);
-  };
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleAmountSelect = (amount: number) => {
     setSelectedAmount(amount);
-    setCurrentStep(2);
+    setCurrentStep(1);
   };
 
   const handlePaymentMethodSelect = (method: string) => {
     setSelectedPaymentMethod(method);
+    setCurrentStep(2);
   };
 
   const handleBack = () => {
@@ -27,29 +25,24 @@ function App() {
   };
 
   const handleConfirm = () => {
-    setCurrentStep(3);
+    setShowSuccess(true);
+  };
+
+  const handleCloseSuccess = () => {
+    setShowSuccess(false);
+    setCurrentStep(0);
   };
 
   return (
     <div className="app">
       {currentStep === 0 && (
-        <div className="welcome-screen">
-          <h1>Welcome to BonusLab</h1>
-          <p>Get your bonus in just a few steps!</p>
-          <button className="start-button" onClick={handleStart}>
-            Start
-          </button>
-        </div>
-      )}
-
-      {currentStep === 1 && (
         <BonusCalculator
           onAmountSelect={handleAmountSelect}
-          onBack={handleBack}
+          onBack={() => {}}
         />
       )}
 
-      {currentStep === 2 && (
+      {currentStep === 1 && (
         <PaymentDetails
           amount={selectedAmount || 100}
           paymentMethod={selectedPaymentMethod}
@@ -58,10 +51,11 @@ function App() {
         />
       )}
 
-      {currentStep === 3 && (
-        <SuccessScreen
+      {showSuccess && (
+        <SuccessPopup
           amount={selectedAmount || 100}
-          onBack={() => setCurrentStep(0)}
+          bonusAmount={(selectedAmount || 100) * 0.1}
+          onClose={handleCloseSuccess}
         />
       )}
     </div>
