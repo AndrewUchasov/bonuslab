@@ -1,62 +1,81 @@
 import React, { useState } from 'react';
-import './App.css';
+import { PaymentMethodSelector } from './components/PaymentMethodSelector';
+import { ProgressBar } from './components/ProgressBar';
 import { BonusCalculator } from './components/BonusCalculator';
 import { PaymentDetails } from './components/PaymentDetails';
-import { SuccessPopup } from './components/SuccessPopup';
+import './App.css';
+
+const STEPS = ['Bonus Calculator', 'Payment Method', 'Payment Details'];
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('card');
-  const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleAmountSelect = (amount: number) => {
-    setSelectedAmount(amount);
-    setCurrentStep(1);
+  const handleStart = () => {
+    setShowModal(true);
+    setCurrentStep(0);
   };
 
-  const handlePaymentMethodSelect = (method: string) => {
-    setSelectedPaymentMethod(method);
-    setCurrentStep(2);
+  const handleNext = () => {
+    setCurrentStep(prev => prev + 1);
   };
 
   const handleBack = () => {
-    setCurrentStep(currentStep - 1);
+    if (currentStep === 0) {
+      setShowModal(false);
+    } else {
+      setCurrentStep(prev => prev - 1);
+    }
+  };
+
+  const handleCalculate = (amount: number) => {
+    setSelectedAmount(amount);
+    handleNext();
   };
 
   const handleConfirm = () => {
-    setShowSuccess(true);
-  };
-
-  const handleCloseSuccess = () => {
-    setShowSuccess(false);
-    setCurrentStep(0);
+    // Тут буде логіка підтвердження платежу
+    console.log('Payment confirmed');
   };
 
   return (
     <div className="app">
-      {currentStep === 0 && (
-        <BonusCalculator
-          onAmountSelect={handleAmountSelect}
-          onBack={() => {}}
-        />
-      )}
+      {!showModal ? (
+        <div className="start-screen">
+          <button className="start-button" onClick={handleStart}>
+            Start
+          </button>
+        </div>
+      ) : (
+        <div className="modal">
+          <div className="modal-content">
+            <ProgressBar steps={STEPS} currentStep={currentStep} />
+            
+            {currentStep === 0 && (
+              <BonusCalculator
+                onCalculate={handleCalculate}
+                onBack={handleBack}
+              />
+            )}
 
-      {currentStep === 1 && (
-        <PaymentDetails
-          amount={selectedAmount || 100}
-          paymentMethod={selectedPaymentMethod}
-          onBack={handleBack}
-          onConfirm={handleConfirm}
-        />
-      )}
+            {currentStep === 1 && (
+              <PaymentMethodSelector
+                amount={selectedAmount || 100}
+                onSelect={handleNext}
+                onBack={handleBack}
+              />
+            )}
 
-      {showSuccess && (
-        <SuccessPopup
-          amount={selectedAmount || 100}
-          bonusAmount={(selectedAmount || 100) * 0.1}
-          onClose={handleCloseSuccess}
-        />
+            {currentStep === 2 && (
+              <PaymentDetails
+                amount={selectedAmount || 100}
+                onBack={handleBack}
+                onConfirm={handleConfirm}
+              />
+            )}
+          </div>
+        </div>
       )}
     </div>
   );

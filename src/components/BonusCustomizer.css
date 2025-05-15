@@ -1,0 +1,100 @@
+.bonus-customizer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.bonus-customizer h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 40px;
+}
+
+.show-calculator-btn {
+  display: block;
+  width: 300px;
+  margin: 30px auto;
+  padding: 15px 30px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.show-calculator-btn:hover {
+  background: #2980b9;
+}
+
+.payment-selection {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.payment-selection h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+.payment-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.payment-methods button {
+  padding: 20px;
+  background: #f7f9fc;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  color: #3498db;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.payment-methods button:hover {
+  background: #3498db;
+  color: white;
+}
+
+.payment-details {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #f7f9fc;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.payment-details h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.payment-details p {
+  color: #34495e;
+  margin-bottom: 30px;
+}
+
+.payment-details button {
+  padding: 15px 30px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.payment-details button:hover {
+  background: #2980b9;
+} 
