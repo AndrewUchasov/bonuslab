@@ -1,25 +1,31 @@
 .success-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease;
+  min-height: 100vh;
+  background: #1a1a1a;
 }
 
 .success-content {
-  background: #1a1a1a;
-  border-radius: 12px;
-  padding: 24px;
+  background: #2a2a2a;
+  border-radius: 16px;
+  padding: 32px;
   text-align: center;
-  max-width: 360px;
-  width: 100%;
-  animation: slideUp 0.3s ease;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: popup-appear 0.3s ease-out;
+}
+
+@keyframes popup-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .success-icon {
@@ -28,64 +34,93 @@
   background: #4CAF50;
   border-radius: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin: 0 auto 16px;
-  font-size: 32px;
+  align-items: center;
+  margin: 0 auto 24px;
   color: white;
+  font-size: 32px;
+  font-weight: bold;
+  animation: icon-bounce 0.5s ease-out;
+}
+
+@keyframes icon-bounce {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .success-content h2 {
   color: white;
   font-size: 24px;
-  margin: 0 0 8px;
+  margin-bottom: 16px;
 }
 
-.success-content p {
+.success-details {
+  margin-bottom: 24px;
+}
+
+.success-details p {
   color: #ccc;
   font-size: 16px;
-  margin: 0 0 24px;
+  margin-bottom: 24px;
 }
 
-.close-button {
-  width: 100%;
+.amount-details {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
   padding: 16px;
+  margin-top: 16px;
+}
+
+.amount-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+.amount-row.total {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.amount {
+  font-weight: 600;
+}
+
+.amount.bonus {
+  color: #4CAF50;
+}
+
+.back-button {
   background: linear-gradient(135deg, #FF6B6B, #FF8E53);
   border: none;
   border-radius: 12px;
   color: white;
+  padding: 12px 32px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.close-button:hover {
+.back-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
 }
 
-.close-button:active {
+.back-button:active {
   transform: translateY(0);
   box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 } 

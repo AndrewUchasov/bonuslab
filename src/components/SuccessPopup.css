@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
 }
 
 .success-popup {
@@ -21,6 +21,15 @@
   width: 90%;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   animation: popup-appear 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes popup-appear {
@@ -61,30 +70,20 @@
   }
 }
 
-.success-popup h2 {
+.success-popup h3 {
   color: white;
   font-size: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .success-details {
-  margin-bottom: 24px;
-}
-
-.success-details p {
-  color: #ccc;
-  font-size: 16px;
-  margin-bottom: 24px;
-}
-
-.amount-details {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   padding: 16px;
-  margin-top: 16px;
+  margin-bottom: 24px;
 }
 
-.amount-row {
+.detail-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -93,7 +92,7 @@
   font-size: 14px;
 }
 
-.amount-row.total {
+.detail-row.total {
   margin-top: 8px;
   padding-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -101,11 +100,7 @@
   font-weight: 600;
 }
 
-.amount {
-  font-weight: 600;
-}
-
-.amount.bonus {
+.detail-row .bonus {
   color: #4CAF50;
 }
 

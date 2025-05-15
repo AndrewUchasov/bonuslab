@@ -1,81 +1,68 @@
 import React, { useState } from 'react';
-import { PaymentMethodSelector } from './components/PaymentMethodSelector';
-import { ProgressBar } from './components/ProgressBar';
+import './App.css';
 import { BonusCalculator } from './components/BonusCalculator';
 import { PaymentDetails } from './components/PaymentDetails';
-import './App.css';
-
-const STEPS = ['Bonus Calculator', 'Payment Method', 'Payment Details'];
+import { SuccessScreen } from './components/SuccessScreen';
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('card');
 
   const handleStart = () => {
-    setShowModal(true);
-    setCurrentStep(0);
+    setCurrentStep(1);
   };
 
-  const handleNext = () => {
-    setCurrentStep(prev => prev + 1);
+  const handleAmountSelect = (amount: number) => {
+    setSelectedAmount(amount);
+    setCurrentStep(2);
+  };
+
+  const handlePaymentMethodSelect = (method: string) => {
+    setSelectedPaymentMethod(method);
   };
 
   const handleBack = () => {
-    if (currentStep === 0) {
-      setShowModal(false);
-    } else {
-      setCurrentStep(prev => prev - 1);
-    }
-  };
-
-  const handleCalculate = (amount: number) => {
-    setSelectedAmount(amount);
-    handleNext();
+    setCurrentStep(currentStep - 1);
   };
 
   const handleConfirm = () => {
-    // Тут буде логіка підтвердження платежу
-    console.log('Payment confirmed');
+    setCurrentStep(3);
   };
 
   return (
     <div className="app">
-      {!showModal ? (
-        <div className="start-screen">
+      {currentStep === 0 && (
+        <div className="welcome-screen">
+          <h1>Welcome to BonusLab</h1>
+          <p>Get your bonus in just a few steps!</p>
           <button className="start-button" onClick={handleStart}>
             Start
           </button>
         </div>
-      ) : (
-        <div className="modal">
-          <div className="modal-content">
-            <ProgressBar steps={STEPS} currentStep={currentStep} />
-            
-            {currentStep === 0 && (
-              <BonusCalculator
-                onCalculate={handleCalculate}
-                onBack={handleBack}
-              />
-            )}
+      )}
 
-            {currentStep === 1 && (
-              <PaymentMethodSelector
-                amount={selectedAmount || 100}
-                onSelect={handleNext}
-                onBack={handleBack}
-              />
-            )}
+      {currentStep === 1 && (
+        <BonusCalculator
+          onAmountSelect={handleAmountSelect}
+          onBack={handleBack}
+        />
+      )}
 
-            {currentStep === 2 && (
-              <PaymentDetails
-                amount={selectedAmount || 100}
-                onBack={handleBack}
-                onConfirm={handleConfirm}
-              />
-            )}
-          </div>
-        </div>
+      {currentStep === 2 && (
+        <PaymentDetails
+          amount={selectedAmount || 100}
+          paymentMethod={selectedPaymentMethod}
+          onBack={handleBack}
+          onConfirm={handleConfirm}
+        />
+      )}
+
+      {currentStep === 3 && (
+        <SuccessScreen
+          amount={selectedAmount || 100}
+          onBack={() => setCurrentStep(0)}
+        />
       )}
     </div>
   );
