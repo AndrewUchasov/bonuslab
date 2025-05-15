@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bonuslab/static/css/main.7512fa2c.css",
+    "main.js": "/bonuslab/static/js/main.9434c66c.js",
+    "static/js/453.b88efcb5.chunk.js": "/bonuslab/static/js/453.b88efcb5.chunk.js",
+    "index.html": "/bonuslab/index.html",
+    "main.7512fa2c.css.map": "/bonuslab/static/css/main.7512fa2c.css.map",
+    "main.9434c66c.js.map": "/bonuslab/static/js/main.9434c66c.js.map",
+    "453.b88efcb5.chunk.js.map": "/bonuslab/static/js/453.b88efcb5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7512fa2c.css",
+    "static/js/main.9434c66c.js"
+  ]
+}
